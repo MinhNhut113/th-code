@@ -44,8 +44,7 @@ serif; }
 .wine-red {
 color: #722f37;
 }
-.bg-wine { 
-background-color: black; 
+.bg-wine {  
 color: white;
 padding: 20px;
 border-radius: 8px;
