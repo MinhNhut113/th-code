@@ -44,21 +44,28 @@ st.markdown('<div class="bg-wine"><h1 class="header-font" style="text-align:cent
 # INPUT WINE PARAMETERS
 st.markdown('<div class="form-box"><h2 class="wine-red header-font">Input Wine Parameters</h2>', unsafe_allow_html=True)
 
+def float_input(label, key):
+    value = st.text_input(label, key=key, placeholder="Enter value...")
+    try:
+        return float(value)
+    except:
+        return np.nan
+
 col1, col2 = st.columns(2)
 with col1:
-    fixed_acidity = st.number_input("Fixed Acidity", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
-    citric_acid = st.number_input("Citric Acid", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
-    chlorides = st.number_input("Chlorides", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
-    total_sulfur_dioxide = st.number_input("Total Sulfur Dioxide", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
-    pH = st.number_input("pH", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
-    alcohol = st.number_input("Alcohol", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
+    fixed_acidity = float_input("Fixed Acidity", "fixed_acidity")
+    citric_acid = float_input("Citric Acid", "citric_acid")
+    chlorides = float_input("Chlorides", "chlorides")
+    total_sulfur_dioxide = float_input("Total Sulfur Dioxide", "total_sulfur_dioxide")
+    pH = float_input("pH", "pH")
+    alcohol = float_input("Alcohol", "alcohol")
 
 with col2:
-    volatile_acidity = st.number_input("Volatile Acidity", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
-    residual_sugar = st.number_input("Residual Sugar", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
-    free_sulfur_dioxide = st.number_input("Free Sulfur Dioxide", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
-    density = st.number_input("Density", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
-    sulphates = st.number_input("Sulphates", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
+    volatile_acidity = float_input("Volatile Acidity", "volatile_acidity")
+    residual_sugar = float_input("Residual Sugar", "residual_sugar")
+    free_sulfur_dioxide = float_input("Free Sulfur Dioxide", "free_sulfur_dioxide")
+    density = float_input("Density", "density")
+    sulphates = float_input("Sulphates", "sulphates")
 
 predict_btn = st.button("Predict Wine Quality")
 st.markdown('</div>', unsafe_allow_html=True)
@@ -70,29 +77,33 @@ if predict_btn:
         features = np.array([[fixed_acidity, volatile_acidity, citric_acid,
                               residual_sugar, chlorides, free_sulfur_dioxide,
                               total_sulfur_dioxide, density, pH, sulphates, alcohol]])
-        features_scaled = scaler_X.transform(features)
-        prediction_scaled = model.predict(features_scaled)[0]
-        prediction = scaler_y.inverse_transform([[prediction_scaled]])[0][0]
-        prediction = round(prediction, 2)
-
-        st.markdown(f"""
-            <div class="wine-red" style="font-size: 24px; font-weight: bold;">
-                Quality Score (0-10): {prediction}
-            </div>
-            <div class="progress">
-                <div class="progress-bar" style="width: {min(100, max(0, prediction/10*100))}%"></div>
-            </div>
-        """, unsafe_allow_html=True)
-
-        if prediction >= 7:
-            st.success("✅ Excellent quality wine!")
-            st.image("https://cdn-icons-png.flaticon.com/512/979/979585.png", width=100)
-        elif prediction >= 5:
-            st.warning("⚠️ Good quality wine.")
-            st.image("https://cdn-icons-png.flaticon.com/512/5793/5793147.png", width=100)
+        
+        if np.isnan(features).any():
+            st.warning("⚠️ Vui lòng nhập đầy đủ tất cả thông tin rượu.")
         else:
-            st.error("🚫 Low quality wine.")
-            st.image("https://cdn-icons-png.flaticon.com/512/7556/7556216.png", width=100)
+            features_scaled = scaler_X.transform(features)
+            prediction_scaled = model.predict(features_scaled)[0]
+            prediction = scaler_y.inverse_transform([[prediction_scaled]])[0][0]
+            prediction = round(prediction, 2)
+
+            st.markdown(f"""
+                <div class="wine-red" style="font-size: 24px; font-weight: bold;">
+                    Quality Score (0-10): {prediction}
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" style="width: {min(100, max(0, prediction/10*100))}%"></div>
+                </div>
+            """, unsafe_allow_html=True)
+
+            if prediction >= 7:
+                st.success("✅ Excellent quality wine!")
+                st.image("https://cdn-icons-png.flaticon.com/512/979/979585.png", width=100)
+            elif prediction >= 5:
+                st.warning("⚠️ Good quality wine.")
+                st.image("https://cdn-icons-png.flaticon.com/512/5793/5793147.png", width=100)
+            else:
+                st.error("🚫 Low quality wine.")
+                st.image("https://cdn-icons-png.flaticon.com/512/7556/7556216.png", width=100)
     except Exception as e:
         st.error(f"🚨 Error: {e}")
 else:
