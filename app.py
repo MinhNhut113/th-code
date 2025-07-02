@@ -4,7 +4,6 @@ import numpy as np
 from sklearn.svm import SVR
 from sklearn.preprocessing import StandardScaler
 
-# Load data & train SVM model
 @st.cache_data
 def train_model():
     data = pd.read_csv('winequality-red.csv')
@@ -24,10 +23,9 @@ def train_model():
 
 model, scaler_X, scaler_y = train_model()
 
-# Streamlit UI config
+
 st.set_page_config(page_title="Wine Quality Prediction", layout="wide")
 
-# Custom CSS to match your HTML
 st.markdown("""
 <style>
 body { 
@@ -47,7 +45,7 @@ serif; }
 color: #722f37;
 }
 .bg-wine { 
-background-color: #722f37; 
+background-color: black; 
 color: white;
 padding: 20px;
 border-radius: 8px;
@@ -79,10 +77,8 @@ transition: width 0.5s;
 </style>
 """, unsafe_allow_html=True)
 
-# Header
 st.markdown('<div class="bg-wine"><h1 class="header-font" style="text-align:center;">Dự Đoán Chất Lượng Rượu Vang</h1></div>', unsafe_allow_html=True)
 
-# Layout giống grid bạn có
 col1, col2 = st.columns([1,1])
 
 with col1:
