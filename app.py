@@ -46,19 +46,19 @@ st.markdown('<div class="form-box"><h2 class="wine-red header-font">Input Wine P
 
 col1, col2 = st.columns(2)
 with col1:
-    fixed_acidity = st.number_input("Fixed Acidity", min_value=-1e100, max_value=1e100, format="%.6f")
-    citric_acid = st.number_input("Citric Acid", min_value=-1e100, max_value=1e100, format="%.6f")
-    chlorides = st.number_input("Chlorides", min_value=-1e100, max_value=1e100, format="%.6f")
-    total_sulfur_dioxide = st.number_input("Total Sulfur Dioxide", min_value=-1e100, max_value=1e100, format="%.6f")
-    pH = st.number_input("pH", min_value=-1e100, max_value=1e100, format="%.6f")
-    alcohol = st.number_input("Alcohol", min_value=-1e100, max_value=1e100, format="%.6f")
+    fixed_acidity = st.number_input("Fixed Acidity", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
+    citric_acid = st.number_input("Citric Acid", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
+    chlorides = st.number_input("Chlorides", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
+    total_sulfur_dioxide = st.number_input("Total Sulfur Dioxide", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
+    pH = st.number_input("pH", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
+    alcohol = st.number_input("Alcohol", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
 
 with col2:
-    volatile_acidity = st.number_input("Volatile Acidity", min_value=-1e100, max_value=1e100, format="%.6f")
-    residual_sugar = st.number_input("Residual Sugar", min_value=-1e100, max_value=1e100, format="%.6f")
-    free_sulfur_dioxide = st.number_input("Free Sulfur Dioxide", min_value=-1e100, max_value=1e100, format="%.6f")
-    density = st.number_input("Density", min_value=-1e100, max_value=1e100, format="%.6f")
-    sulphates = st.number_input("Sulphates", min_value=-1e100, max_value=1e100, format="%.6f")
+    volatile_acidity = st.number_input("Volatile Acidity", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
+    residual_sugar = st.number_input("Residual Sugar", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
+    free_sulfur_dioxide = st.number_input("Free Sulfur Dioxide", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
+    density = st.number_input("Density", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
+    sulphates = st.number_input("Sulphates", value=0.0, min_value=-float('inf'), max_value=float('inf'), format="%.6f")
 
 predict_btn = st.button("Predict Wine Quality")
 st.markdown('</div>', unsafe_allow_html=True)
