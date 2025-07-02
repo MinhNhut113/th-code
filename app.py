@@ -43,17 +43,23 @@ st.markdown('<div class="bg-wine"><h1 class="header-font" style="text-align:cent
 
 # INPUT WINE PARAMETERS
 st.markdown('<div class="form-box"><h2 class="wine-red header-font">Input Wine Parameters</h2>', unsafe_allow_html=True)
-fixed_acidity = st.number_input("Fixed Acidity")
-volatile_acidity = st.number_input("Volatile Acidity")
-citric_acid = st.number_input("Citric Acid")
-residual_sugar = st.number_input("Residual Sugar")
-chlorides = st.number_input("Chlorides")
-free_sulfur_dioxide = st.number_input("Free Sulfur Dioxide")
-total_sulfur_dioxide = st.number_input("Total Sulfur Dioxide")
-density = st.number_input("Density")
-pH = st.number_input("pH")
-sulphates = st.number_input("Sulphates")
-alcohol = st.number_input("Alcohol")
+
+col1, col2 = st.columns(2)
+with col1:
+    fixed_acidity = st.number_input("Fixed Acidity")
+    citric_acid = st.number_input("Citric Acid")
+    chlorides = st.number_input("Chlorides")
+    total_sulfur_dioxide = st.number_input("Total Sulfur Dioxide")
+    pH = st.number_input("pH")
+    alcohol = st.number_input("Alcohol")
+
+with col2:
+    volatile_acidity = st.number_input("Volatile Acidity")
+    residual_sugar = st.number_input("Residual Sugar")
+    free_sulfur_dioxide = st.number_input("Free Sulfur Dioxide")
+    density = st.number_input("Density")
+    sulphates = st.number_input("Sulphates")
+
 predict_btn = st.button("Predict Wine Quality")
 st.markdown('</div>', unsafe_allow_html=True)
 
