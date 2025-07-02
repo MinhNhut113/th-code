@@ -53,12 +53,13 @@ padding: 20px;
 border-radius: 8px;
 }
 .form-box {
-background-color: white;
+background-color: #722f37;
 padding: 20px;
 border-radius: 8px; 
 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-.result-box { background-color: white; 
+.result-box { 
+background-color: #722f37; 
 padding: 20px; 
 border-radius: 8px; 
 box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
