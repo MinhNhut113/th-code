@@ -46,19 +46,19 @@ st.markdown('<div class="form-box"><h2 class="wine-red header-font">Input Wine P
 
 col1, col2 = st.columns(2)
 with col1:
-    fixed_acidity = st.number_input("Fixed Acidity")
-    citric_acid = st.number_input("Citric Acid")
-    chlorides = st.number_input("Chlorides")
-    total_sulfur_dioxide = st.number_input("Total Sulfur Dioxide")
-    pH = st.number_input("pH")
-    alcohol = st.number_input("Alcohol")
+    fixed_acidity = st.number_input("Fixed Acidity", min_value=-1e100, max_value=1e100, format="%.6f")
+    citric_acid = st.number_input("Citric Acid", min_value=-1e100, max_value=1e100, format="%.6f")
+    chlorides = st.number_input("Chlorides", min_value=-1e100, max_value=1e100, format="%.6f")
+    total_sulfur_dioxide = st.number_input("Total Sulfur Dioxide", min_value=-1e100, max_value=1e100, format="%.6f")
+    pH = st.number_input("pH", min_value=-1e100, max_value=1e100, format="%.6f")
+    alcohol = st.number_input("Alcohol", min_value=-1e100, max_value=1e100, format="%.6f")
 
 with col2:
-    volatile_acidity = st.number_input("Volatile Acidity")
-    residual_sugar = st.number_input("Residual Sugar")
-    free_sulfur_dioxide = st.number_input("Free Sulfur Dioxide")
-    density = st.number_input("Density")
-    sulphates = st.number_input("Sulphates")
+    volatile_acidity = st.number_input("Volatile Acidity", min_value=-1e100, max_value=1e100, format="%.6f")
+    residual_sugar = st.number_input("Residual Sugar", min_value=-1e100, max_value=1e100, format="%.6f")
+    free_sulfur_dioxide = st.number_input("Free Sulfur Dioxide", min_value=-1e100, max_value=1e100, format="%.6f")
+    density = st.number_input("Density", min_value=-1e100, max_value=1e100, format="%.6f")
+    sulphates = st.number_input("Sulphates", min_value=-1e100, max_value=1e100, format="%.6f")
 
 predict_btn = st.button("Predict Wine Quality")
 st.markdown('</div>', unsafe_allow_html=True)
